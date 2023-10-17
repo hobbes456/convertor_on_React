@@ -9,17 +9,9 @@ export default function Converter() {
     const [inputValue, setInputValue] = useState('1000');
 
     let info = `${validCurrency1} == ${validCurrency2}`;
+    let resultValue = 0;
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            console.log('START');
-        }, 1000);
-        return () => {
-            console.log('END');
-            clearInterval(timer);
-        }
-    }, [inputValue])
-
+    
     return (
         <div className='converter' id='converter'>
             <Block 
