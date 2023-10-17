@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import Block from './Block';
 import ButtonReverse from './ButtonReverse';
 import './css/Converter.css';
@@ -8,13 +8,24 @@ export default function Converter() {
     const [validCurrency2, setValidCurrency2] = useState('USD');
     const [inputValue, setInputValue] = useState('1000');
 
-    const info = validCurrency1 + ' == ' + validCurrency2;
+    let info = `${validCurrency1} == ${validCurrency2}`;
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            console.log('START');
+        }, 1000);
+        return () => {
+            console.log('END');
+            clearInterval(timer);
+        }
+    }, [inputValue])
 
     return (
         <div className='converter' id='converter'>
             <Block 
                 validCurrency={validCurrency1}
                 handleCurrency={setValidCurrency1}
+                handleInput={setInputValue}
                 disabled={false}
                 info={info}/>
             <ButtonReverse />
