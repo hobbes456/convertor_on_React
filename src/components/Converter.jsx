@@ -9,15 +9,14 @@ export default function Converter() {
     const [validCurrency2, setValidCurrency2] = useState('USD');
     const [inputValue, setInputValue] = useState('0');
     const [resultValue, setResultValue] = useState('0');
+    const [info, setInfo] = useState(`${inputValue} ${validCurrency1} == ${resultValue} ${validCurrency2}`);
 
-    let info = `${inputValue} ${validCurrency1} == ${resultValue} ${validCurrency2}`;
-
-    // function isNanValue() {
-    //     if (isNaN(parseInt(inputValue))) {
-    //         info = 'Некорректно введенное значение!'
-    //         return false; 
-    //     };
-    // }
+    function isValueNan() {
+        if (isNaN(parseInt(inputValue))) {
+            setInfo('Некорректно введенные данные!');
+            return true;
+        }
+    }
 
     async function fetchCurrency() {
         try {
@@ -29,7 +28,9 @@ export default function Converter() {
             validCurrency1 === 'RUB' ? value1 = 1 : value1 = response.data.Valute[`${validCurrency1}`].Value;
             validCurrency2 === 'RUB' ? value2 = 1 : value2 = response.data.Valute[`${validCurrency2}`].Value;
 
-            setResultValue((parseInt(inputValue) * value1 / value2).toFixed(2))
+            setResultValue((parseInt(inputValue) * value1 / value2).toFixed(2));
+
+            setInfo(`${inputValue} ${validCurrency1} == ${resultValue} ${validCurrency2}`);
 
         } catch (e) {
             alert(`Ошибка: ${e.name}. Попробуйте перезагрузить страницу или подключитесь позднее.`);
@@ -37,9 +38,9 @@ export default function Converter() {
     }
 
     useEffect(() => {
-        // if (!isNanValue) {
-        //     return;
-        // }
+        if (isValueNan()) {
+            return;
+        }
         fetchCurrency();
     }, [validCurrency1, validCurrency2, inputValue])
     
