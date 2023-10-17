@@ -1,5 +1,6 @@
 import {React} from 'react';
 import CurrencyPanel from './CurrencyPanel';
+import './css/Block.css'
 
 export default function Block() {
     return (

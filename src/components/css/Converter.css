@@ -1,0 +1,8 @@
+.converter {
+    height: inherit;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}

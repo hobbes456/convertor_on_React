@@ -1,4 +1,5 @@
-import {React} from 'react'
+import {React} from 'react';
+import './css/CurrencyPanel.css'
 
 export default function CurrencyPanel () {
     return (
