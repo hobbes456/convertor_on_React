@@ -12,6 +12,13 @@ export default function Converter() {
 
     let info = `${inputValue} ${validCurrency1} == ${resultValue} ${validCurrency2}`;
 
+    // function isNanValue() {
+    //     if (isNaN(parseInt(inputValue))) {
+    //         info = 'Некорректно введенное значение!'
+    //         return false; 
+    //     };
+    // }
+
     async function fetchCurrency() {
         try {
             const response = await axios.get("https://www.cbr-xml-daily.ru/daily_json.js");
@@ -22,7 +29,7 @@ export default function Converter() {
             validCurrency1 === 'RUB' ? value1 = 1 : value1 = response.data.Valute[`${validCurrency1}`].Value;
             validCurrency2 === 'RUB' ? value2 = 1 : value2 = response.data.Valute[`${validCurrency2}`].Value;
 
-                        
+            setResultValue((parseInt(inputValue) * value1 / value2).toFixed(2))
 
         } catch (e) {
             alert(`Ошибка: ${e.name}. Попробуйте перезагрузить страницу или подключитесь позднее.`);
@@ -30,8 +37,11 @@ export default function Converter() {
     }
 
     useEffect(() => {
+        // if (!isNanValue) {
+        //     return;
+        // }
         fetchCurrency();
-    })
+    }, [validCurrency1, validCurrency2, inputValue])
     
     return (
         <div className='converter'>
