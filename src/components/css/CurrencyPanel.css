@@ -1,4 +1,4 @@
-.currencyPanel {
+.currency__panel {
     height: 50px;
     width: 360px;
     margin-bottom: 20px;
@@ -20,7 +20,7 @@
     cursor: pointer;
 }
 
-.currency .valid {
+.valid {
     color: #e2970b;
     border: 2px #e2970b solid;
 }

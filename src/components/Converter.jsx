@@ -1,14 +1,29 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import Block from './Block';
 import ButtonReverse from './ButtonReverse';
 import './css/Converter.css';
 
 export default function Converter() {
+    const [validCurrency1, setValidCurrency1] = useState('RUB');
+    const [validCurrency2, setValidCurrency2] = useState('USD');
+
+    // function currencyHandle(fn, content) {
+    //     fn(content);
+    // }
+
     return (
         <div className='converter' id='converter'>
-            <Block />
+            <Block 
+                validCurrency={validCurrency1}
+                handle={setValidCurrency1}
+                value={1000}
+                disabled={false}/>
             <ButtonReverse />
-            <Block />
+            <Block
+                validCurrency={validCurrency2}
+                handle={setValidCurrency2}
+                value={0}
+                disabled={true}/>
         </div>
     )
 }
