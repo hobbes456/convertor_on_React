@@ -1,6 +1,6 @@
 import {React} from 'react'
 
-export default function CurrencyPanel() {
+export default function CurrencyPanel () {
     return (
         <div className='currencyPanel'>
             <div className="currency">RUB</div>

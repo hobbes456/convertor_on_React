@@ -1,6 +1,6 @@
 import { React } from 'react';
-import { Block } from './Block';
-import { ButtonReverse } from './ButtonReverse';
+import Block from './Block';
+import ButtonReverse from './ButtonReverse';
 
 export default function Converter() {
     return (
