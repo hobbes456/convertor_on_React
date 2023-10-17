@@ -11,6 +11,12 @@ export default function Converter() {
     const [resultValue, setResultValue] = useState('0');
     const [info, setInfo] = useState(`${inputValue} ${validCurrency1} == ${resultValue} ${validCurrency2}`);
 
+    function reverse() {
+        let a = inputValue;
+        setInputValue(resultValue);
+        setResultValue(a);
+    }
+
     function isValueNan() {
         if (isNaN(parseInt(inputValue))) {
             setInfo('Некорректно введенные данные!');
@@ -30,8 +36,6 @@ export default function Converter() {
 
             setResultValue((parseInt(inputValue) * value1 / value2).toFixed(2));
 
-            setInfo(`${inputValue} ${validCurrency1} == ${resultValue} ${validCurrency2}`);
-
         } catch (e) {
             alert(`Ошибка: ${e.name}. Попробуйте перезагрузить страницу или подключитесь позднее.`);
         }
@@ -42,7 +46,11 @@ export default function Converter() {
             return;
         }
         fetchCurrency();
-    }, [validCurrency1, validCurrency2, inputValue])
+    }, [validCurrency1, validCurrency2, inputValue]);
+
+    useEffect(() => 
+        setInfo(`${inputValue} ${validCurrency1} == ${resultValue} ${validCurrency2}`)
+    , [resultValue]);
     
     return (
         <div className='converter'>
@@ -54,7 +62,7 @@ export default function Converter() {
                 disabled={false}
                 info={info}/>
 
-            <ButtonReverse />
+            <ButtonReverse handleValue={reverse}/>
 
             <Block
                 validCurrency={validCurrency2}
