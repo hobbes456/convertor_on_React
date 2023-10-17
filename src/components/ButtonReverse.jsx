@@ -4,7 +4,7 @@ import './css/ButtonReverse.css';
 
 export default function ButtonReverse() {
     return (
-        <div id="button__reverse">
+        <div>
             <img src={imgUrl} alt="" />
         </div>
     )
